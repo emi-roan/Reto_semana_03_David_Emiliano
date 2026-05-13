@@ -32,7 +32,6 @@ Durante la fase de pruebas con datasets de estrés, se detectaron desbordamiento
 
 Especificaciones Técnicas
 Componente       |       Función Principal                                                                   |
-_________________|___________________________________________________________________________________________|
 sys              |       Gestión de flujos de entrada/salida (stdin/stdout) para integración en pipelines.   |
 math             |       Validación de integridad numérica y detección de desbordamientos de memoria.        |
 sorted           |       Aplicación del algoritmo Timsort para el ordenamiento de rentabilidad.              |
