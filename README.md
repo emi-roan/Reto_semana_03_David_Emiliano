@@ -31,10 +31,10 @@ Durante la fase de pruebas con datasets de estrés, se detectaron desbordamiento
 - Solución: Se integró el módulo math para verificar la finitud de cada cálculo antes de su almacenamiento. Mediante la función math.isinf(), se identifican y descartan registros corruptos o fuera de rango (outliers), asegurando la integridad del reporte final.
 
 Especificaciones Técnicas
-Componente       |       Función Principal                                                                   |
-sys              |       Gestión de flujos de entrada/salida (stdin/stdout) para integración en pipelines.   |
-math             |       Validación de integridad numérica y detección de desbordamientos de memoria.        |
-sorted           |       Aplicación del algoritmo Timsort para el ordenamiento de rentabilidad.              |
+Componente: Función Principal
+sys:Gestión de flujos de entrada/salida (stdin/stdout) para integración en pipelines.
+math: Validación de integridad numérica y detección de desbordamientos de memoria.
+sorted: Aplicación del algoritmo Timsort para el ordenamiento de rentabilidad.             
 
 Lógica de Ordenamiento
 El reporte se genera transformando el diccionario de productos en una lista de objetos, la cual se ordena mediante una función lambda referenciada al ingreso total en orden descendente.
