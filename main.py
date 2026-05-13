@@ -1,4 +1,5 @@
 import sys
+import math
 
 def main():
     productos = {}
@@ -23,22 +24,30 @@ def main():
         try:
             cantidad = int(partes[2])
             precio_u = float(partes[3])
+            
+            # Validación extra: si el precio es una locura, lo saltamos
+            ingreso_parcial = cantidad * precio_u
+            if math.isinf(ingreso_parcial):
+                continue
+                
         except ValueError:
             continue
             
         if nombre_prod not in productos:
-            productos[nombre_prod] = {
-                "unidades": 0,
-                "ingreso": 0.0
-            }
+            productos[nombre_prod] = {"unidades": 0, "ingreso": 0.0}
             
         productos[nombre_prod]["unidades"] += cantidad
-        productos[nombre_prod]["ingreso"] += (cantidad * precio_u)
+        productos[nombre_prod]["ingreso"] += ingreso_parcial
 
     reporte = []
     for nombre, datos in productos.items():
         u = datos["unidades"]
         ingreso = datos["ingreso"]
+        
+        # Si por alguna razón la suma total dio infinito, lo ignoramos
+        if math.isinf(ingreso):
+            continue
+            
         promedio = ingreso / u if u > 0 else 0.0
         
         reporte.append({
@@ -48,6 +57,7 @@ def main():
             "promedio": promedio
         })
 
+    # Ordenar por ingreso descendente
     reporte_ordenado = sorted(reporte, key=lambda x: x["ingreso"], reverse=True)
 
     print("producto,unidades_vendidas,ingreso_total,precio_promedio")
